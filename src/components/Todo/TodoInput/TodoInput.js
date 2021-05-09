@@ -25,18 +25,9 @@ const TodoInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
-        <label style={{ color: !isValid ? "red" : "black" }}>
-          What are your plans for today?
-        </label>
-        <input
-          style={{
-            borderColor: !isValid ? "red" : "black",
-            background: !isValid ? "pink" : "transparent",
-          }}
-          type="text"
-          onChange={todoInputChangeHandler}
-        />
+      <div className={`form-control ${!isValid ? "invalid" : ""}`}>
+        <label>What are your plans for today?</label>
+        <input type="text" onChange={todoInputChangeHandler} />
       </div>
       <Button type="submit">Add Item</Button>
     </form>
