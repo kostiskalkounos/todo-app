@@ -1,35 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
-
 import Button from "../../UI/Button/Button";
-import "./TodoInput.css";
-
-const FormControl = styled.div`
-  margin: 0.5rem 0;
-
-  & label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-    color: ${(props) => (props.invalid ? "red" : "black")};
-  }
-
-  & input {
-    display: block;
-    width: 100%;
-    border: 1px solid ${(props) => (props.invalid ? "red" : "#ccc")};
-    background: ${(props) => (props.invalid ? "pink" : "transparent")};
-    font: inherit;
-    line-height: 1.5rem;
-    padding: 0 0.25rem;
-  }
-
-  & input:focus {
-    outline: none;
-    background: #fad0ec;
-    border-color: #8b005d;
-  }
-`;
+import styles from "./TodoInput.module.css";
 
 const TodoInput = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -53,10 +24,12 @@ const TodoInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <FormControl invalid={!isValid}>
+      <div
+        className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
+      >
         <label>What are your plans for today?</label>
         <input type="text" onChange={todoInputChangeHandler} />
-      </FormControl>
+      </div>
       <Button type="submit">Add Item</Button>
     </form>
   );
