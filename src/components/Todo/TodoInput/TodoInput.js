@@ -20,6 +20,7 @@ const TodoInput = (props) => {
       return;
     }
     props.onAddItem(enteredValue);
+    setEnteredValue("");
   };
 
   return (
@@ -28,7 +29,11 @@ const TodoInput = (props) => {
         className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
       >
         <label>What are your plans for today?</label>
-        <input type="text" onChange={todoInputChangeHandler} />
+        <input
+          type="text"
+          value={enteredValue}
+          onChange={todoInputChangeHandler}
+        />
       </div>
       <Button type="submit">Add Item</Button>
     </form>
